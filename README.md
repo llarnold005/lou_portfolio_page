@@ -4,16 +4,41 @@ A personal digital headquarters for engineering, independent thinking, and commu
 
 ## Run locally
 
-Requires Node.js 22.13+ (validated with 24.22.1) and npm. Use the existing checkout; cloud tasks are already isolated and do not need worktrees.
+Requires Node.js 22.13+ (validated with 24.22.1) and npm.
+
+On your own computer, open a terminal in the cloned repository. For example, if you cloned it into your home directory:
+
+```sh
+cd ~/lou_portfolio_page
+npm ci
+npm run dev
+```
+
+Open `http://localhost:3000` in your browser after the server reports ready. Environment variables are optional for browsing; copy `.env.example` to `.env.local` only if that file does not already exist and you want to configure integrations. Without email configuration, the contact form clearly displays an unavailable state. Production: `npm run build` then `npm start`.
+
+### Recover from a failed installation on macOS
+
+If npm reports `mkdir '/workspace'` or cannot write `/workspace/.npm-cache/_logs`, a cloud-only cache path was used on your computer. Stop any running installs or development servers with Ctrl+C, then run these commands one at a time:
+
+```sh
+cd ~/lou_portfolio_page
+npm ci --cache "$HOME/.npm"
+npm run dev
+```
+
+Run the last command only after installation succeeds. `npm ci` replaces the incomplete `node_modules` using the committed lockfile; it does not delete your source files. The explicit cache option overrides an incorrectly configured npm cache without changing your global settings. Do not delete `package-lock.json`, use `sudo`, or disable package verification. If installation still fails, inspect the first `npm error` and the log path npm reports.
+
+### Managed cloud environment only
+
+The paths below apply to Codex Cloud, not your Mac or PC. Use the existing checkout; cloud tasks are already isolated and do not need worktrees.
 
 ```sh
 cd /workspace/lou_portfolio_page
 npm ci --cache /workspace/.npm-cache
-cp .env.example .env.local
 npm run dev
 ```
 
-For a regular local clone, omit the custom cache path. Development listens on port 3000. Production: `npm run build` then `npm start`. No credentials are needed to browse the website. Without email configuration, the contact form clearly displays an unavailable state.
+### Validation
 
 ```sh
 npm run lint
