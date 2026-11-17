@@ -1,0 +1,40 @@
+---
+title: "What does an AI agent leave behind?"
+summary: "A demonstration of the questions evidence can help us ask about systems that act on our behalf."
+date: "2026-11-17"
+category: "Engineering"
+tags: ["Observability", "AI security"]
+featured: true
+demo: true
+---
+
+This is demonstration content for testing the publication experience. It is not a published essay or a statement of the owner’s views.
+
+## Start with the action
+
+An assistant that answers a question produces text. An agent that uses a tool also changes the world around it. Understanding that change requires context: the request, the authorization, and the outcome.
+
+> An investigation is only as useful as the evidence it can explain.
+
+## A small evidence record
+
+A conceptual record might connect an action to its source. This is an illustrative schema, not a shipped product API.
+
+```json
+{
+  "event_id": "example-event",
+  "action": "document.read",
+  "outcome": "allowed",
+  "source": "demonstration"
+}
+```
+
+| Question          | Evidence to examine     |
+| ----------------- | ----------------------- |
+| What happened?    | Action and outcome      |
+| Was it expected?  | Authorization context   |
+| Can it be traced? | Stable event references |
+
+## From records to understanding
+
+Collection alone does not create accountability. Teams need records they can validate, connect, and interpret. Human review remains important when conclusions affect access or trust.

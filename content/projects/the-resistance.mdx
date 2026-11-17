@@ -1,0 +1,21 @@
+## The evidence gap
+
+AI agents increasingly interact with tools, enterprise applications, APIs, and sensitive data. A useful security investigation needs to understand what an agent accessed, which actions it attempted, what authorization applied, and whether activity crossed expected boundaries.
+
+Traditional logs may capture individual requests without the context of the whole agentic workflow. The Resistance explores how those fragments could become evidence a security team can actually use.
+
+## Two engineering streams
+
+### The data pipeline
+
+The current development direction centers on Java-based event processing, Kafka integration, event validation, and reliable consumption. Normalization into OCSF-aligned security events, enrichment, and correlation are planned directions. Specific implementation milestones have not been independently verified on this website.
+
+### The AI Investigator
+
+Python-based services are being developed around evidence retrieval, event-reference validation, and investigation findings. The longer-term direction includes agentic investigation orchestration. Findings should remain connected to the evidence that supports them, with human review where judgment is required.
+
+## A shared model, not a black box
+
+The conceptual architecture above describes a destination, not a claim that every stage is implemented. Collection should preserve source context. Processing should validate and normalize records. Investigations should cite identifiable evidence. Findings should make uncertainty clear.
+
+Potential remediation workflows are a future exploration. No autonomous remediation or production deployment is claimed.
