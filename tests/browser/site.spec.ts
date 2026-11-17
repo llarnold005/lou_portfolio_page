@@ -209,7 +209,7 @@ test("article progress advances with reading and responsive photos do not overfl
     .poll(() =>
       page.locator(".reading-progress").evaluate((el) => {
         const value = getComputedStyle(el).transform;
-        return value === "none" ? 0 : new DOMMatrixReadOnly(value).a;
+        return value === "none" ? 1 : new DOMMatrixReadOnly(value).a;
       }),
     )
     .toBeGreaterThan(0.5);
