@@ -1,3 +1,4 @@
+import { ArchitectureExplorer } from "@/components/architecture-explorer";
 import {
   PageIntro,
   SectionLabel,
@@ -63,15 +64,20 @@ export default function Resistance() {
             architectural direction, not a list of shipped features.
           </p>
         </div>
-        <ol className="architecture">
-          {architecture.map((a, i) => (
-            <li key={a.title}>
-              <span className="small-label">0{i + 1}</span>
-              <strong>{a.title}</strong>
-              <p>{a.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <ArchitectureExplorer />
+        <details className="architecture-text">
+          <summary>Read the complete architecture as text</summary>
+          <ol>
+            {architecture.map((stage) => (
+              <li key={stage.id}>
+                <h3>{stage.title}</h3>
+                <p>{stage.simple}</p>
+                <p>{stage.technical}</p>
+                <strong>{stage.status}</strong>
+              </li>
+            ))}
+          </ol>
+        </details>
       </section>
       <section className="reading-shell">
         <Content source={projectContent("the-resistance")} />

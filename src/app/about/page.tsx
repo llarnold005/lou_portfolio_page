@@ -1,3 +1,5 @@
+import { Photograph } from "@/components/photograph";
+import { Reveal } from "@/components/motion";
 import { PageIntro, ConnectBand, SectionLabel } from "@/components/ui";
 import { career, milestones } from "@/lib/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -26,6 +28,14 @@ export default function About() {
         </p>
       </PageIntro>
       <div className="container">
+        <Reveal className="story-photo-layout">
+          <Photograph name="about" />
+          <blockquote>
+            “Building the future also means taking responsibility for who
+            benefits from it.”
+            <span>THE MAVERICK BUILDER / A GUIDING BELIEF</span>
+          </blockquote>
+        </Reveal>
         {[
           [
             "The Engineer",

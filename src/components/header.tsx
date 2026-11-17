@@ -1,4 +1,5 @@
 "use client";
+import { m } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -46,6 +47,13 @@ export function Header() {
             }
           >
             {label}
+            {(href === "/" ? path === "/" : path.startsWith(href)) && (
+              <m.span
+                className="nav-active-line"
+                layoutId="nav-underline"
+                transition={{ type: "spring", stiffness: 400, damping: 35 }}
+              />
+            )}
           </Link>
         ))}
       </nav>

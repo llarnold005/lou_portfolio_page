@@ -33,3 +33,15 @@ Server-rendered routes and shared shell; typed site/project/initiative/notebook 
 ## Required owner inputs
 
 Name, portrait, canonical domain, optional biography/career details and social profiles, real articles, verified project implementation status, email provider key/recipient/sender. Until supplied, use brand identity and explicit placeholders. Never invent results.
+
+## Cinematic experience revision
+
+Photography is a primary layout element: hero (50% desktop composition, portrait first on mobile), story, publication, and community images use a shared responsive asset model. Required photographs: public/images/profile/{hero,about,editorial,community}.webp. Missing assets resolve to clearly labeled abstract placeholders, never a fabricated likeness. Desktop/mobile focal points and alt text are editable independently.
+
+Motion architecture: Motion for React only, with LazyMotion loading domMax on demand for shared layout transitions. Reusable chapter reveals, staggered headline, magnetic CTAs, route entrance, reading/page progress, and navigation indicator. Server HTML remains visible; reduced-motion users receive immediate states, no parallax, and no moving demonstration event. No WebGL, scroll hijacking, mandatory animation wait, or second animation library.
+
+Chapters: Who I Am → What I Believe → What I'm Building → What I'm Thinking → What I'm Working to Change. A sticky chapter rail is limited to desktop. The hero uses a full-viewport midnight composition and layered cobalt aperture motif. Images respond subtly to hover.
+
+Resistance: keyboard-selectable stages, Simple/Technical views, explicit per-stage roadmap status, opt-in fictional event playback, pause/reset, live updates only for manually selected detail. Static text alternative exposes every stage without JavaScript. Editorial: animated filter layouts, featured selection, reading-specific progress and server-rendered related articles.
+
+Validation: production build, existing regression tests, architecture controls/keyboard, reduced motion, JavaScript-disabled content, narrow/mobile/tablet layouts, light/dark axe checks. Validate image optimizer using an abstract placeholder fixture, never a synthetic portrait. Actual photo cropping remains subject to owner asset review.

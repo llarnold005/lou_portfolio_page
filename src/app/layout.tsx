@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MotionProvider, PageProgress } from "@/components/motion";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { site } from "@/lib/site";
@@ -33,9 +34,12 @@ export default function RootLayout({
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <PageProgress />
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
         {site.personName && (
           <script
             type="application/ld+json"

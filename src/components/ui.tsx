@@ -1,3 +1,4 @@
+import { Magnetic } from "@/components/motion";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Article } from "@/lib/content";
@@ -40,13 +41,15 @@ export function ButtonLink({
   secondary?: boolean;
 }) {
   return (
-    <Link
-      href={href}
-      className={`button ${secondary ? "button-secondary" : ""}`}
-    >
-      {children}
-      <ArrowUpRight size={17} />
-    </Link>
+    <Magnetic>
+      <Link
+        href={href}
+        className={`button ${secondary ? "button-secondary" : ""}`}
+      >
+        {children}
+        <ArrowUpRight size={17} />
+      </Link>
+    </Magnetic>
   );
 }
 export function PageIntro({

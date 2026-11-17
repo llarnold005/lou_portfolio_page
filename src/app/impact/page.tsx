@@ -1,3 +1,4 @@
+import { Photograph } from "@/components/photograph";
 import Image from "next/image";
 import { PageIntro, SectionLabel, ButtonLink, TextLink } from "@/components/ui";
 import { initiatives } from "@/lib/site";
@@ -28,6 +29,7 @@ export default function Impact() {
         </p>
       </PageIntro>
       <div className="container">
+        <Photograph name="community" className="impact-photograph" />
         <section className="two-column">
           <div>
             <SectionLabel number="01">THE PHILOSOPHY</SectionLabel>

@@ -1,4 +1,5 @@
 "use client";
+import { m, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { Search, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import type { Article } from "@/lib/content";
 import { categories } from "@/lib/site";
 // Cards remain lightweight; content bodies are rendered only on server article routes.
 export function WritingBrowser({ articles }: { articles: Article[] }) {
+  const reduced = useReducedMotion();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const filtered = articles.filter(
@@ -15,6 +17,7 @@ export function WritingBrowser({ articles }: { articles: Article[] }) {
         .toLowerCase()
         .includes(query.toLowerCase()),
   );
+  const featured = filtered.find((a) => a.featured);
   return (
     <>
       <div className="writing-tools">
@@ -49,9 +52,40 @@ export function WritingBrowser({ articles }: { articles: Article[] }) {
           ? " · demonstration content"
           : ""}
       </p>
-      <div className="writing-list">
+      {featured && (
+        <m.div
+          key={featured.slug}
+          className="featured-reading"
+          initial={false}
+          animate={reduced ? undefined : { y: [10, 0] }}
+          transition={{ duration: 0.4 }}
+        >
+          <span className="eyebrow">
+            {featured.demo
+              ? "FEATURED READING PREVIEW / DEMONSTRATION"
+              : "FEATURED ESSAY"}
+          </span>
+          <h2>
+            <Link href={featured.externalUrl || `/writing/${featured.slug}`}>
+              {featured.title}
+            </Link>
+          </h2>
+          <p>{featured.summary}</p>
+          <span className="text-link">
+            {featured.category} <ArrowUpRight size={18} />
+          </span>
+        </m.div>
+      )}
+      <m.div layout className="writing-list">
         {filtered.map((a, i) => (
-          <article className="writing-row" key={a.slug}>
+          <m.article
+            layout={!reduced}
+            initial={false}
+            animate={reduced ? undefined : { y: [8, 0] }}
+            transition={{ duration: 0.35 }}
+            className="writing-row"
+            key={a.slug}
+          >
             <span className="row-number">{String(i + 1).padStart(2, "0")}</span>
             <div>
               <div className="article-meta">
@@ -72,9 +106,9 @@ export function WritingBrowser({ articles }: { articles: Article[] }) {
               </div>
             </div>
             <ArrowUpRight aria-hidden="true" />
-          </article>
+          </m.article>
         ))}
-      </div>
+      </m.div>
       {!filtered.length && (
         <div className="empty-state">
           <h2>No matching articles.</h2>

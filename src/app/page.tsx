@@ -1,8 +1,9 @@
-import Image from "next/image";
+import { CinematicHero } from "@/components/cinematic-hero";
+import { Photograph } from "@/components/photograph";
+import { Reveal } from "@/components/motion";
 import { ArrowUpRight } from "lucide-react";
 import {
   ArticleCard,
-  ButtonLink,
   ConnectBand,
   SectionLabel,
   TextLink,
@@ -21,66 +22,24 @@ export default function Home() {
     .slice(0, 3);
   return (
     <>
-      <section className="hero container">
-        <div className="hero-copy">
-          <SectionLabel number="01">ENGINEER. THINKER. BUILDER.</SectionLabel>
-          <h1 className="hero-title">
-            I build technology.
-            <br />I question its impact.
-            <br />I work to shape
-            <br />
-            <em>what comes next.</em>
-          </h1>
-          <p>
-            I am a cybersecurity engineering leader and independent thinker
-            exploring the intersection of AI, security, technology policy, and
-            community empowerment.
-          </p>
-          <div className="hero-buttons">
-            <ButtonLink href="/work">Explore my work</ButtonLink>
-            <ButtonLink href="/writing" secondary>
-              Read my writing
-            </ButtonLink>
-          </div>
-          <div className="hero-note">
-            <span className="dot" />
-            INDEPENDENT BY NATURE. A BUILDER BY CONVICTION.
-          </div>
-        </div>
-        <div className="hero-visual">
-          {site.portrait ? (
-            <Image
-              src={site.portrait.src}
-              alt={site.portrait.alt}
-              fill
-              priority
-              sizes="(max-width:800px) 100vw, 42vw"
-              style={{ objectFit: "cover" }}
-            />
-          ) : (
-            <>
-              <div className="visual-grid" />
-              <div className="visual-orbit" />
-              <div className="visual-slab" />
-              <span className="visual-cross">+</span>
-              <span className="visual-coordinates">
-                THE INTERSECTION OF POSSIBILITY & RESPONSIBILITY
-              </span>
-              <span className="portrait-note">
-                PORTRAIT SPACE / A HUMAN STORY TO COME
-              </span>
-            </>
-          )}
-          <div className="visual-caption">
-            <strong>The Maverick Builder</strong>
-            <span>
-              BUILD WITH PURPOSE.
-              <br />
-              THINK WITHOUT LIMITS.
-            </span>
-          </div>
-        </div>
-      </section>
+      <CinematicHero />
+      <nav className="chapter-rail" aria-label="Story chapters">
+        <a href="#who-i-am">
+          01 <span>Who I am</span>
+        </a>
+        <a href="#what-i-believe">
+          02 <span>What I believe</span>
+        </a>
+        <a href="#what-im-building">
+          03 <span>What I’m building</span>
+        </a>
+        <a href="#what-im-thinking">
+          04 <span>What I’m thinking</span>
+        </a>
+        <a href="#what-im-changing">
+          05 <span>What I’m working to change</span>
+        </a>
+      </nav>
       <div className="brand-ribbon container">
         <span>BUILD.</span>
         <span className="ribbon-dot">✳</span>
@@ -91,8 +50,8 @@ export default function Home() {
         <span>EMPOWER.</span>
         <span>TECHNOLOGY SHOULD SERVE PEOPLE.</span>
       </div>
-      <section className="section container">
-        <SectionLabel number="02">WHAT DRIVES ME</SectionLabel>
+      <section className="section container story-chapter" id="what-i-believe">
+        <SectionLabel number="02">WHAT I BELIEVE</SectionLabel>
         <div className="section-heading">
           <h2>
             One perspective.
@@ -104,23 +63,28 @@ export default function Home() {
             benefits from it.
           </p>
         </div>
-        <div className="pillar-grid">
-          {pillars.map((p) => (
-            <article className="pillar" key={p.name}>
-              <a href={p.href}>
-                <div className="pillar-top">
-                  <span>/{p.number}</span>
-                  <ArrowUpRight size={20} />
-                </div>
-                <h3>{p.name}.</h3>
-                <strong>{p.verb}</strong>
-                <p>{p.text}</p>
-              </a>
-            </article>
-          ))}
-        </div>
+        <Reveal>
+          <div className="pillar-grid">
+            {pillars.map((p) => (
+              <article className="pillar" key={p.name}>
+                <a href={p.href}>
+                  <div className="pillar-top">
+                    <span>/{p.number}</span>
+                    <ArrowUpRight size={20} />
+                  </div>
+                  <h3>{p.name}.</h3>
+                  <strong>{p.verb}</strong>
+                  <p>{p.text}</p>
+                </a>
+              </article>
+            ))}
+          </div>
+        </Reveal>
       </section>
-      <section className="section container">
+      <section
+        className="section container story-chapter"
+        id="what-im-building"
+      >
         <SectionLabel number="03">CURRENTLY BUILDING</SectionLabel>
         <div className="section-heading">
           <h2>
@@ -130,29 +94,38 @@ export default function Home() {
           </h2>
           <TextLink href="/work">All selected work</TextLink>
         </div>
-        <div className="project-feature">
-          <div className="project-copy">
-            <span className="status">IN DEVELOPMENT · AI SECURITY</span>
-            <h3>The Resistance</h3>
-            <p className="project-tagline">Making AI actions visible.</p>
-            <p>
-              As AI gains the ability to act, we need to understand what it
-              actually does. An evolving security and observability initiative
-              for investigating AI activity.
-            </p>
-            <TextLink href="/work/the-resistance">Explore the project</TextLink>
+        <Reveal className="project-reveal">
+          <div className="project-feature interactive-project">
+            <div className="project-copy">
+              <span className="status">IN DEVELOPMENT · AI SECURITY</span>
+              <h3>The Resistance</h3>
+              <p className="project-tagline">Making AI actions visible.</p>
+              <p>
+                As AI gains the ability to act, we need to understand what it
+                actually does. An evolving security and observability initiative
+                for investigating AI activity.
+              </p>
+              <TextLink href="/work/the-resistance">
+                Explore the project
+              </TextLink>
+            </div>
+            <div className="project-graphic" aria-hidden="true">
+              <div className="signal-lines" />
+              <span className="graphic-corner">
+                VISIBILITY → ACCOUNTABILITY
+              </span>
+              <span className="resistance-glyph">R↗</span>
+              <span className="graphic-label">
+                THE RESISTANCE / CONCEPTUAL SYSTEM STUDY
+              </span>
+            </div>
           </div>
-          <div className="project-graphic" aria-hidden="true">
-            <div className="signal-lines" />
-            <span className="graphic-corner">VISIBILITY → ACCOUNTABILITY</span>
-            <span className="resistance-glyph">R↗</span>
-            <span className="graphic-label">
-              THE RESISTANCE / CONCEPTUAL SYSTEM STUDY
-            </span>
-          </div>
-        </div>
+        </Reveal>
       </section>
-      <section className="section container">
+      <section
+        className="section container story-chapter"
+        id="what-im-thinking"
+      >
         <SectionLabel number="04">LATEST THINKING</SectionLabel>
         <div className="section-heading">
           <div>
@@ -169,15 +142,21 @@ export default function Home() {
             demonstration content, not published essays.
           </p>
         )}
-        <div className="article-grid">
-          {articles.map((a, i) => (
-            <ArticleCard key={a.slug} article={a} index={i} />
-          ))}
-        </div>
+        <Reveal>
+          <div className="article-grid featured-grid">
+            {articles.map((a, i) => (
+              <ArticleCard key={a.slug} article={a} index={i} />
+            ))}
+          </div>
+        </Reveal>
       </section>
-      <section className="impact-home container">
+      <section
+        className="impact-home container story-chapter"
+        id="what-im-changing"
+      >
         <div>
           <SectionLabel number="05">BEYOND THE CODE</SectionLabel>
+          <Photograph name="community" className="community-photo" />
           <h2>
             Progress means more
             <br />

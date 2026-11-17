@@ -8,7 +8,6 @@ export const site = {
   url: z.url().parse(origin).replace(/\/$/, ""),
   description:
     "Cybersecurity engineering, independent thinking, and technology that serves people. Build. Envision. Challenge. Empower.",
-  portrait: null as null | { src: string; alt: string },
   socials: [] as {
     label: "GitHub" | "LinkedIn" | "Substack" | "Instagram";
     url: string;
@@ -103,11 +102,61 @@ export const projects = [
   },
 ];
 export const architecture = [
-  { title: "AI activity", detail: "Tools, agents, applications" },
-  { title: "Event collection", detail: "Capture the evidence" },
-  { title: "Processing", detail: "Validate & normalize" },
-  { title: "Investigation", detail: "Correlate & examine" },
-  { title: "Findings", detail: "Explain with evidence" },
+  {
+    id: "agent",
+    title: "AI Agent",
+    detail: "A system attempts an action",
+    simple:
+      "An AI agent asks to read a fictional document using a tool. The question is what it tried to do, and whether it was allowed.",
+    technical:
+      "Preserve agent, tool, operation, authorization, and source context. The demo uses synthetic event demo-001; no real agents or applications are connected.",
+    status: "Conceptual input",
+    event: "demo-001 · document.read requested",
+  },
+  {
+    id: "events",
+    title: "Activity Events",
+    detail: "Capture what happened",
+    simple:
+      "A record describes the attempted action and its result, giving an investigator something to examine.",
+    technical:
+      "Collect action and outcome records with stable references. Source integrations and full context capture are architectural direction; collection coverage is not verified.",
+    status: "Planned collection model",
+    event: "demo-001 · synthetic activity record",
+  },
+  {
+    id: "ingestion",
+    title: "Ingestion Pipeline",
+    detail: "Move and validate the evidence",
+    simple:
+      "The record travels through a pipeline that checks whether the required information is present.",
+    technical:
+      "Java event processing, Kafka integration, event validation, and reliable consumption are owner-described development streams. OCSF-aligned normalization and enrichment are planned; delivery milestones remain unverified.",
+    status: "In development / unverified",
+    event: "demo-001 · validation simulated",
+  },
+  {
+    id: "analysis",
+    title: "Security Analysis",
+    detail: "Ask evidence-backed questions",
+    simple:
+      "An investigator examines the record and its context. A suspicious action is a question to investigate, not proof of harm.",
+    technical:
+      "Python services are being developed for evidence retrieval, event-reference validation, and findings. Correlation, detections, and agentic orchestration are planned directions. This browser demo runs none of those services.",
+    status: "In development / planned",
+    event: "demo-001 · illustrative context check",
+  },
+  {
+    id: "findings",
+    title: "Investigation Findings",
+    detail: "Explain what is known",
+    simple:
+      "A finding connects an explanation to the evidence and makes uncertainty visible. People still need to review important decisions.",
+    technical:
+      "The synthetic finding cites demo-001 only. Evidence-backed findings are the product direction; production detections, autonomous remediation, and real investigations are not claimed.",
+    status: "Planned output",
+    event: "demo-001 · fictional finding, no risk verdict",
+  },
 ];
 export const categories = [
   "Engineering",

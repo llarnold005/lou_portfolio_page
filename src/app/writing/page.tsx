@@ -1,3 +1,4 @@
+import { Photograph } from "@/components/photograph";
 import { PageIntro, TextLink } from "@/components/ui";
 import { WritingBrowser } from "@/components/writing-browser";
 import { getArticles } from "@/lib/content";
@@ -34,6 +35,21 @@ export default async function Writing() {
         </p>
       </PageIntro>
       <section className="container section">
+        <div className="editorial-feature">
+          <Photograph name="editorial" />
+          <div>
+            <span className="eyebrow">THE BUILDERS’ VOICE / EDITOR’S DESK</span>
+            <h2>
+              Look closer.
+              <br />
+              Think further.
+            </h2>
+            <p>
+              Engineering, emerging technology, and the questions that connect
+              them to everyday life.
+            </p>
+          </div>
+        </div>
         {!hasPublished && (
           <div className="notice">
             No essays have been published yet. The reading previews below

@@ -1,6 +1,6 @@
 # The Maverick Builder
 
-A personal digital headquarters for engineering, independent thinking, and community opportunity. Next.js App Router, React, strict TypeScript, Tailwind CSS, MDX, Zod, and Lucide. Public pages render on the server; only interactive navigation, search, theme, sharing, and forms use client components. No message database, tracking scripts, remote fonts, or fabricated achievements.
+A personal digital headquarters for engineering, independent thinking, and community opportunity. Next.js App Router, React, strict TypeScript, Tailwind CSS, MDX, Zod, Lucide, and Motion for React. Public pages render on the server; only interactive navigation, search, theme, sharing, and forms use client components. No message database, tracking scripts, remote fonts, or fabricated achievements.
 
 ## Run locally
 
@@ -53,7 +53,7 @@ In this cloud image, Chromium is already installed; use `PLAYWRIGHT_CHROMIUM_EXE
 
 ## Content and identity
 
-Edit `src/lib/site.ts` for the public name, local portrait asset and alt text, social links, navigation, career areas, milestones, projects, community initiatives, notebook entries, and the conceptual Resistance architecture. Add real photographs under `public/` and set `site.portrait`; the current abstract composition is explicitly a portrait placeholder, never a generated likeness. Person JSON-LD is intentionally omitted until `personName` is supplied. Social links are omitted until verified URLs are supplied. Keep URLs HTTPS.
+Edit `src/lib/site.ts` for the public name, social links, navigation, career areas, milestones, projects, community initiatives, notebook entries, and the conceptual Resistance architecture. The shared photography system is configured in `src/lib/photography.ts`. Add your four actual WebP photographs under `public/images/profile/` and set descriptive alt text and desktop/mobile focal points. Missing images resolve to labeled abstract placeholders, never a generated likeness. See [Photography guide](docs/PHOTOGRAPHY.md). Person JSON-LD is intentionally omitted until `personName` is supplied. Social links are omitted until verified URLs are supplied. Keep URLs HTTPS.
 
 Career data currently lists only the professional areas supplied in the brief. Add verified dates and employers if desired; never infer accomplishments. Add milestone objects `{ title, date, description }` for confirmed speaking/publication details.
 
@@ -131,3 +131,13 @@ If cloud egress is restricted, package installation needs registry.npmjs.org (al
 Provide the real name, domain, portrait, verified social links, final biography, real writing, and confirmed project statuses. Review the content and privacy policy. Configure and test a real email delivery end to end. Verify keyboard/screen-reader usability and actual-device behavior; measure Core Web Vitals on the deployed origin. Optional future work: article-specific social images, CMS adapter, bot challenge, paginated archives, richer project MDX records, and editorial image assets. The application is deployable; identity, publication, contact provisioning, and production delivery verification remain owner configuration.
 
 The product requirements, sitemap, design direction, component model, and implementation milestones are in `docs/BUILD-PLAN.md`.
+
+## Cinematic experience
+
+The homepage now follows five chapters, beginning with a midnight portrait-led hero. Mobile places the portrait first and uses `contain` to preserve the full photograph; desktop reserves 52% of the composition for imagery with configurable focal points. The chapter navigation pins on desktop without hijacking scrolling.
+
+`src/components/motion.tsx` provides MotionConfig/LazyMotion, chapter reveals, staggered headline, magnetic CTAs, and page/article scroll progress. `motion-features.ts` lazily loads domMax for shared layout transitions (navigation, pipeline event, editorial filtering); there is no second animation library. `template.tsx` provides a short route entrance without exit delays. Server HTML is visible from the start. Reduced-motion preference removes entrance movement, magnetism, image scaling, and automatic event travel. Progress bars follow scroll directly; no spring lag. The portrait system uses optimized Next Image assets with explicit responsive sizes and only the hero is preloaded.
+
+The Resistance explorer has Simple and Technical explanations and per-stage status; its complete text alternative works without JavaScript. Event playback is opt-in and fictional, may be paused/reset, and uses synthetic event `demo-001`. Reduced-motion mode provides a manual step button. No backend project services or live security data are connected.
+
+Writing retains instant search/category filters and adds a featured selection that follows the filters, animated article layout, and an article-specific reading progress bar. Content authoring and publishing requirements remain unchanged.
